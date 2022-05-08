@@ -1,7 +1,27 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+puts 'Deleting Mutts Data...'
+User.destroy_all
+Dog.destroy_all
+Stylist.destroy_all
+Service.destroy_all
+Appointment.destroy_all
+
+puts '🌱 Seeding Starting....'
+
+# USER NEED PASSWORD
+u1 = User.create!(name: "Aaron", email: "aaron@dogmail.com", admin: true, password: "password")
+
+d1 = Dog.create!(user_id: u1.id, name: 'Dougie', breed: 'Labradoodle', image_url: 'https://images.unsplash.com/photo-1521354465180-c1ceac1d709a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')
+d2 = Dog.create!(user_id: u1.id, name: 'Murphy', breed: 'Terrier', image_url: 'https://images.unsplash.com/photo-1551147239-144f237a37b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')
+
+st1 = Stylist.create!(name: 'Lloyd', image_url: 'https://www.thesun.co.uk/wp-content/uploads/2018/07/NINTCHDBPICT000422933541.jpg', intelligence: 'Dumb')
+st2 = Stylist.create!(name: 'Harry', image_url: 'https://i.pinimg.com/originals/9b/68/c2/9b68c2b595162ee6239212f4edd2a325.jpg', intelligence: 'Dumber')
+
+se1 = Service.create!(name: 'Wash', price: 50.00)
+se2 = Service.create!(name: 'Haircut', price: 100.00)
+se3 = Service.create!(name: 'The Works', price: 150.00)
+
+a1 = Appointment.create!(dog_id: d1.id, stylist_id: st1.id, service_id: se1.id, service_name: se1.name, service_price: se1.price, dog_name: d1.name, dog_image: d1.image_url, dog_breed: d1.breed, stylist_image: st1.image_url, stylist_name: st1.name, stylist_intelligence: st1.intelligence)
+a1 = Appointment.create!(dog_id: d2.id, stylist_id: st2.id, service_id: se3.id, service_name: se3.name, service_price: se3.price, dog_name: d2.name, dog_image: d2.image_url, dog_breed: d2.breed, stylist_image: st2.image_url, stylist_name: st2.name, stylist_intelligence: st2.intelligence)
+
+
+puts 'seeding COMPLETE 🌱'
