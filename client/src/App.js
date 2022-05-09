@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 // import Signup from "./Signup";
 // import ClientContainer from "./ClientContainer";
 import AppointmentContainer from "./AppointmentContainer"
+import LogIn from "./LogIn"
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
   return (
     
     <div className="container p-4">
+        <LogIn />
         <AppointmentContainer appointments={appointments}/>
     </div>
   );

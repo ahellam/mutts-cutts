@@ -9,8 +9,8 @@ function AppointmentContainer({appointments}) {
         <p className='col-start-1 col-end-3 px-7'>Doggo</p>
         <p className='col-start-4 px-1'>Service </p>
         <p className='col-start-6 px-1'>Stylist </p>
-        <p className='col-start-9 px-1'>Edit App</p>
-        <p className='col-start-10 px-1'>Delete App</p>
+        <p className='col-start-9 px-1'>Edit Appt</p>
+        <p className='col-start-10 px-1'>Delete Appt</p>
 
       </div>
         {
