@@ -13,6 +13,8 @@ u1 = User.create!(name: "Aaron", email: "aaron@dogmail.com", admin: true, passwo
 d1 = Dog.create!(user_id: u1.id, name: 'Dougie', breed: 'Labradoodle', image_url: 'https://images.unsplash.com/photo-1521354465180-c1ceac1d709a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')
 d2 = Dog.create!(user_id: u1.id, name: 'Murphy', breed: 'Terrier', image_url: 'https://images.unsplash.com/photo-1551147239-144f237a37b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')
 
+# German Shepard - https://images.unsplash.com/photo-1619980263701-ff2df2e12423?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80
+
 st1 = Stylist.create!(name: 'Lloyd', image_url: 'https://www.thesun.co.uk/wp-content/uploads/2018/07/NINTCHDBPICT000422933541.jpg', intelligence: 'Dumb')
 st2 = Stylist.create!(name: 'Harry', image_url: 'https://i.pinimg.com/originals/9b/68/c2/9b68c2b595162ee6239212f4edd2a325.jpg', intelligence: 'Dumber')
 

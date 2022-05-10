@@ -1,11 +1,20 @@
 class UsersController < ApplicationController
+
+    # skip_before_action :authorize, only: :create
+    before_action :authorize_user, except: [:create]
+
     def index 
         render json: User.all
     end
 
+    # not sure I understand this... for jwt
+    # def profile  
+        # render json: @user, status: :ok
+    # end
+
     def show
-        user = User.find(params[:id])
-        render json: user
+        current_user = User.find_by(id: session[:current_user])
+        render json: current_user
     end
     
     def create 

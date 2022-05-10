@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-// import Auth from './Auth'    dont know if this is the right path... copying from lecture...
+// import Auth from './Auth' 
 
-function LogIn() {
-  const [username, setUsername] = useState("");
+// SET UP THE USESTATE USER AND ATUTHENICATED IN APP JS
+function Login({setUser, setIsAuthenticated}) {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const [errors, setErrors] = useState([])
+  const [error, setError] = useState([])
 
   function handleSubmit(e){
       e.preventDefault()
@@ -19,18 +20,27 @@ function LogIn() {
           headers:{'Content-Type': 'application/json'},
           body:JSON.stringify(user)
       })
-      .then(res => res.json())
-      .then(json => {
-          console.log(json)
-          if(json.errors) setErrors(json.errors)
+      .then(res => {
+        if(res.ok){
+          res.json()
+          .then(user =>{
+            setUser(user)
+            setIsAuthenticated(true)
+          })
+
+        } else {
+          res.json()
+          .then(json => setError(json.error))
+        }
       })
   }
 
   return (
-    <>
-      <h1 className="text-4xl">Welcome to Mutts Cutts</h1>
-      <h1 className="text-3xl">Login</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="scale-95 container p-4 grid gap-4">
+    <div className="shadow-md p-1 grid grid-cols-2 grid-rows-2 border-2">
+      <h1 className="text-4xl p-1 font-bold underline underline-offset-4">Mutts Cutts</h1>
+      
+      <form className=" self-center"onSubmit={handleSubmit}>
         <label className="font-bold px-1">Username:&nbsp;
         <input
           className="border-2 rounded-md"
@@ -52,10 +62,19 @@ function LogIn() {
         </label>
         <LogInButton></LogInButton>
       </form>
-      {errors?<div>{errors}</div>:null}
+      {error?<div>{error}</div>:null}
       {/* <Auth setUser={setUser} setIsAuthenticated={setUser}/> */}
-      
-    </>
+    </div>
+
+    <div className="p-1 shadow-xl border-2">
+        <h1 className="text-3xl text-center">Welcome to Mutts Cutts</h1>
+        <p className="text-xl text-center">Groom your dogs the dumb way</p>
+        <img id="logged out picture" className="rounded-xl object-cetner p-3" src="https://media-cldnry.s-nbcnews.com/image/upload/streams/2014/June/140609/2D274906069488-140609-dumb-dumber-tease.jpg"></img>
+    </div>
+
+    </div>
+
+    
   );
 }
 
@@ -73,4 +92,4 @@ function LogInButton(props){
     )
   }
 
-export default LogIn;
+export default Login;
