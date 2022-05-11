@@ -16,16 +16,16 @@ ActiveRecord::Schema.define(version: 2022_05_08_205352) do
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.bigint "dog_id", null: false
+    t.bigint "dog_id"
     t.string "dog_name"
     t.string "dog_breed"
     t.string "dog_image"
     t.string "user_name"
-    t.bigint "stylist_id", null: false
+    t.bigint "stylist_id"
     t.string "stylist_name"
     t.string "stylist_image"
     t.string "stylist_intelligence"
-    t.bigint "service_id", null: false
+    t.bigint "service_id"
     t.string "service_name"
     t.string "service_price"
     t.datetime "created_at", precision: 6, null: false

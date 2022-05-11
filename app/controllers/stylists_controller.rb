@@ -1,5 +1,5 @@
 class StylistsController < ApplicationController
     def index 
-        render json: Service.all
+        render json: Stylist.all
     end
 end

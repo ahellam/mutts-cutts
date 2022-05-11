@@ -11,8 +11,14 @@ import Book from "./Book";
 function App() {
 
   const appointmentAPI = "http://localhost:3000/appointments" 
+  const dogsAPI = "http://localhost:3000/dogs" 
+  const stylistsAPI = "http://localhost:3000/stylists" 
+  const servicesAPI = "http://localhost:3000/services" 
 
   const [appointments, setAppointments] = useState([])
+  const [dogs, setDogs] = useState([])
+  const [stylists, setStylists] =useState([])
+  const [services, setServices] =useState([])
 
 
   const [isAuthenticated, setIsAuthenticated] = useState(false); 
@@ -34,15 +40,29 @@ function App() {
     fetch(appointmentAPI)
     .then(res => res.json())
     .then(setAppointments)
-    // THEN NAVIGATE TO APPOINTMENTS PAGE
+    
+    fetch(dogsAPI)
+    .then(res => res.json())
+    .then(setDogs)
+
+    fetch(stylistsAPI)
+    .then(res => res.json())
+    .then(setStylists)
+
+    fetch(servicesAPI)
+    .then(res => res.json())
+    .then(setServices)
+
   },[])
 
+  function handleDelete(appointment){
+    fetch(`${appointmentAPI}/${appointment.id}`,{
+      method: "DELETE"
+    });
+    setAppointments(appointments.filter((appt) => appt.id !== appointment.id))
+  }
 
-  // useEffect(() => {
-  //   fetch(appointmentAPI)
-  //   .then(res => res.json())
-  //   .then(setAppointments)
-  // },[])
+
 
   // Reroute user to <Login /> Component if not authenticated
   if (!isAuthenticated) return <Login error={'please login'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />;
@@ -54,9 +74,9 @@ function App() {
         <Navigation setIsAuthenticated={setIsAuthenticated} setUser={setUser} user={user}/>
         <Routes>
           <Route path="/" element={<Home />}/>
-          <Route path="/appointments" element={<AppointmentContainer appointments={appointments} />}/>
+          <Route path="/appointments" element={<AppointmentContainer appointments={appointments} handleDelete={handleDelete}/>}/>
           <Route path="/login" element={<Login />} />
-          <Route path="/book" element={<Book />} />
+          <Route path="/book" element={<Book dogs={dogs} stylists={stylists} services={services} appointments={appointments} setAppointments={setAppointments}/>} />
 
         </Routes>
       </Router>

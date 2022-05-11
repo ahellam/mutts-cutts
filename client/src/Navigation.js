@@ -24,15 +24,15 @@ function Navigation({ setIsAuthenticated, setUser, user }) {
         <div className="row-start-2 self-center p-1">
             <nav>
                 <NavLink to="/" className={({ isActive }) => [
-                    isActive ? "font-bold hover:text-blue-600" : "text-slate-600 hover:text-blue-600 active:font-bold"
+                    isActive ? "animate-pulse font-bold hover:text-blue-600" : "text-slate-600 hover:text-blue-600 active:font-bold"
                 ]}>Home &nbsp;</NavLink>
 
                 <NavLink to="/appointments" className={({ isActive }) => [
-                    isActive ? "font-bold hover:text-blue-600" : "text-slate-600 hover:text-blue-600 active:font-bold"
+                    isActive ? "animate-pulse font-bold hover:text-blue-600" : "text-slate-600 hover:text-blue-600 active:font-bold"
                 ]}>Appointments &nbsp;</NavLink>
 
                 <NavLink to="/book" className={({ isActive }) => [
-                    isActive ? "font-bold hover:text-blue-600" : "text-slate-600 hover:text-blue-600 active:font-bold"
+                    isActive ? "animate-pulse font-bold hover:text-blue-600" : "text-slate-600 hover:text-blue-600 active:font-bold"
                 ]}>Book &nbsp;</NavLink>
             </nav>
         </div>

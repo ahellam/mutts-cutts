@@ -1,145 +1,168 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Book() {
+function Book({dogs, stylists, services, appointments, setAppointments}) {
+
+    let navigate = useNavigate();
+
+  const [selectedDog, setSelectedDog] = useState();
+  const [selectedStylist, setSelectedStylist] = useState();
+  const [selectedService, setSelectedService] = useState();
+
+  
   const [dogName, setDogName] = useState("");
   const [dogBreed, setDogBreed] = useState("");
   const [dogImage, setDogImage] = useState("");
-  const [service, setService] = useState("Wash");
-  const [price, setPrice] = useState(parseFloat(50).toFixed(2));
-  const [stylist, setStylist] = useState("Lloyd");
+  const [service, setService] = useState("");
+  const [price, setPrice] = useState();
+  const [stylist, setStylist] = useState("");
   const [stylistImage, setStylistImage] = useState("")
-  
+  const [intelligence, setIntelligence] = useState("")
 
+  const currentDog = dogs.find((d) => d.id === parseInt(selectedDog))
+  const currentStylist = stylists.find((s) => s.id === parseInt(selectedStylist))
+  const currentService = services.find((s) => s.id === parseInt(selectedService))
+  //   console.log(currentDog)
+  
+function handleDogChange(e){
+    return setSelectedDog(e.target.value)
+}
+  // console.log(selectedDog)
+  
 function handleServiceChange(e){
-    const service = (e.target.value);
-    setService(service);
-    if (service === "Haircut") {
-        setPrice(parseFloat(100).toFixed(2))
-    } else if(service === "The Works"){
-        setPrice(parseFloat(150).toFixed(2))
-    }else{
-        setPrice(parseFloat(50).toFixed(2))
-    }
+    return setSelectedService(e.target.value);
 }
 
 function handleStylistChange(e){
-    const stylist = (e.target.value);
-    setStylist(stylist)
-    if (stylist === "Lloyd") {
-        setStylistImage("https://www.thesun.co.uk/wp-content/uploads/2018/07/NINTCHDBPICT000422933541.jpg")
-    }else{
-        setStylistImage("https://i.pinimg.com/originals/9b/68/c2/9b68c2b595162ee6239212f4edd2a325.jpg")
-    }
-    // console.log(stylistImage)
+    return setSelectedStylist(e.target.value);
 }
 
+                                                // BOOKING SUBMIT
 function handleSubmit(e){
     e.preventDefault()
-    console.log(e)
+    const formData = {
+        dog_id: currentDog.id,
+        stylist_id: currentStylist.id,
+        service_id: currentService.id,
+        dog_image: currentDog.image_url,
+        dog_name: currentDog.name,
+        dog_breed: currentDog.breed, 
+        service_name: currentService.name, 
+        service_price: currentService.price, 
+        stylist_image: currentStylist.image_url,
+        stylist_name: currentStylist.name,
+        stylist_intelligence: currentStylist.intelligence
+
+    };
+    fetch ("http://localhost:3000/appointments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    })
+    .then(res => res.json())
+    .then((newAppointment) => {setAppointments([...appointments, newAppointment])})
+    .then(navigate("/appointments"))
 }
 
 
 
   return (
-    <div className=" border-4 p-1 shadow-xl">
+    <div className=" border-2 p-1 shadow-xl">
       <div className="border-2 bg-slate-600">
         <h1 className="p-1 text-3xl text-white text-center">Book An Appointment</h1>
       </div>
-      <div className="grid grid-rows-3 p-4">
+      <div className="grid grid-rows-1 p-4">
         <form className="p-1 text-center" onSubmit={handleSubmit}>
-          <label className="font-bold px-1">
-            Dog Name: &nbsp;
-            <input
-              className="border-2 rounded-md"
-              type="text"
-              placeholder="Enter Name"
-              value={dogName}
-              onChange={(e) => setDogName(e.target.value)}
-            />
-          </label>
 
-          <label className="font-bold px-1">
-            Dog Breed: &nbsp;
-            <input
-              className="border-2 rounded-md"
-              type="text"
-              placeholder="Enter Breed"
-              value={dogBreed}
-              onChange={(e) => setDogBreed(e.target.value)}
-            />
-          </label>
-
-          <label className="font-bold px-1">
-            Dog Image: &nbsp;
-            <input
-              className="border-2 rounded-md"
-              type="text"
-              placeholder="Enter Image URL"
-              value={dogImage}
-              onChange={(e) => setDogImage(e.target.value)}
-            />
-          </label> <br></br> <br></br>
-
-          <label className="font-bold px-1">
-            Select Service: &nbsp;
+                                            {/* SELECT DOG */}
+          <label className="font-bold px-12">
+          Select Dog: &nbsp;
             <select
-              className="border-2 rounded-md"
-              type="text"
-              placeholder="Enter Image URL"
-              value={service}
-              onChange={handleServiceChange}
+            className="border-2 rounded-md"
+            type="text"
+            value={selectedDog}
+            onChange={handleDogChange}
             >
-              <option value="Wash">Wash</option>
-              <option value="Haircut">Haircut</option>
-              <option value="The Works">The Works</option>
+            <option value=""> </option>
+            {dogs.map((d) => (
+                <option key={d.id} value={d.id}>
+                    {d.name}
+                </option>
+            ))}
             </select>
           </label>
 
-          <label className="font-bold px-1">
-            Price:&nbsp;$
-            <input
-              className="border-2 rounded-md"
-              type="text"
-              value={price}
-              readOnly
-            />
-          </label> <br></br><br></br>
+          {/* <br></br> <br></br> */}
 
-          <label className="font-bold px-1">
-            Select Stylist: &nbsp;
+
+                                            {/* SELECT SERVICE */}
+        <label className="font-bold px-12">
+          Select Service: &nbsp;
             <select
-              className="border-2 rounded-md"
-              type="text"
-              placeholder="Enter Image URL"
-              value={stylist}
-              onChange={handleStylistChange}
+            className="border-2 rounded-md"
+            type="text"
+            value={selectedService}
+            onChange={handleServiceChange}
             >
-              <option value="Lloyd">Lloyd</option>
-              <option value="Harry">Harry</option>
+            <option value=""> </option>
+            {services.map((ser) => (
+                <option key={ser.id} value={ser.id}>
+                    {ser.name}
+                </option>
+            ))}
             </select>
           </label>
 
-          <label className="font-bold px-1">
-            Stylist Image URL: &nbsp;
-            <input
-              className="border-2 rounded-md"
-              type="text"
-              value={stylistImage}
-              readOnly
-            />
-          </label> <br></br><br></br>
+                                                      {/* SELECT STYLIST */}
+        <label className="font-bold px-12">
+          Select Stylist: &nbsp;
+            <select
+            className="border-2 rounded-md"
+            type="text"
+            value={selectedStylist}
+            onChange={handleStylistChange}
+            >
+            <option value=""> </option>
+            {stylists.map((sty) => (
+                <option key={sty.id} value={sty.id}>
+                    {sty.name}
+                </option>
+            ))}
+            </select>
+          </label>
+
+          <br></br><br></br>
+
 
           <BookButton></BookButton>
 
         </form>
-        <div className="row-start-3">
+
+    
+        {/* <div className="row-start-2">
             <img src={dogImage} className=" h-40 rounded-xl p-1 w-[150px] object-cover float-left">
             </img>
             <img src={stylistImage} className="h-40 rounded-xl p-1 w-[150px] object-cover float-right">
             </img>
-        </div>
+        </div> */}
       </div>
+      <div className='grid grid-cols-8 bg-slate-600 text-white border-2'>
+        <p className='col-start-1 col-end-3 px-7'>Doggo</p>
+        <p className='col-start-4 px-1'>Service </p>
+        <p className='col-start-6 px-1'>Stylist </p>
+      </div>
+
+      <div className='border-2 grid grid-cols-8 shadow-md'>
+      {currentDog && <img src={currentDog.image_url} className='h-20 rounded-xl p-1 w-[150px] object-cover'></img>}
+      {currentDog && <p className='p-1 col-start-2 col-end-4 self-center'>Name: {currentDog.name} <br></br>Breed: {currentDog.breed}</p>}
+      {currentService && <p className='p-1 col-start-4 col-end-6 self-center'>Type: {currentService.name} <br></br>Cost: {currentService.price}</p>}
+      {currentStylist && <img src={currentStylist.image_url} 
+      className='col-start-6 h-20 rounded-xl p-1 w-[150px] object-cover'></img>}
+      {currentStylist && <p className='p-1 col-start-7 col-end-9 self-center'>Name: {currentStylist.name} <br></br>Intelligence: {currentStylist.intelligence}</p>}
+      
+    </div>
+
     </div>
   );
 }
