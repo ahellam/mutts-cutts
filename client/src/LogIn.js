@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 // import Auth from './Auth' 
 
-// SET UP THE USESTATE USER AND ATUTHENICATED IN APP JS
 function Login({setUser, setIsAuthenticated}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

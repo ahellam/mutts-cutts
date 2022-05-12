@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { useEffect, useState } from "react";
 
 import Home from "./Home";
-import AppointmentContainer from "./AppointmentContainer"
-import Login from "./Login"
+import AppointmentContainer from "./AppointmentContainer";
+import Login from "./Login";
 import Navigation from "./Navigation";
 import Book from "./Book";
 import DogsContainer from "./DogsContainer";
