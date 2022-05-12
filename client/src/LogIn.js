@@ -48,7 +48,7 @@ function Login({setUser, setIsAuthenticated}) {
           placeholder="Enter Name"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          // required
+          required
         />
         </label>
 
@@ -59,7 +59,7 @@ function Login({setUser, setIsAuthenticated}) {
           placeholder="Enter Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          // required
+          required
         />
         </label>
         <LogInButton></LogInButton>
