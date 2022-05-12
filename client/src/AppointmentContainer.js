@@ -1,7 +1,7 @@
 import React from 'react'
 import Appointment from './Appointment'
 
-function AppointmentContainer({appointments, handleDelete}) {
+function AppointmentContainer({appointments, handleDeleteAppointment, handleHowDumb}) {
   return (
     <div>
 
@@ -17,7 +17,7 @@ function AppointmentContainer({appointments, handleDelete}) {
           appointments.map((appointment) => 
           <Appointment 
           key={appointment.id}
-          appointment={appointment} handleDelete={handleDelete}
+          appointment={appointment} handleDeleteAppointment={handleDeleteAppointment} handleHowDumb={handleHowDumb}
           />
           )
         }

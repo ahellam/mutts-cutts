@@ -34,6 +34,10 @@ function Navigation({ setIsAuthenticated, setUser, user }) {
                 <NavLink to="/book" className={({ isActive }) => [
                     isActive ? "animate-pulse font-bold hover:text-blue-600" : "text-slate-600 hover:text-blue-600 active:font-bold"
                 ]}>Book &nbsp;</NavLink>
+
+                <NavLink to="/dogs" className={({ isActive }) => [
+                    isActive ? "animate-pulse font-bold hover:text-blue-600" : "text-slate-600 hover:text-blue-600 active:font-bold"
+                ]}>Dogs &nbsp;</NavLink>
             </nav>
         </div>
     </div>

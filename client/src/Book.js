@@ -154,12 +154,12 @@ function handleSubmit(e){
       </div>
 
       <div className='border-2 grid grid-cols-8 shadow-md'>
-      {currentDog && <img src={currentDog.image_url} className='h-20 rounded-xl p-1 w-[150px] object-cover'></img>}
-      {currentDog && <p className='p-1 col-start-2 col-end-4 self-center'>Name: {currentDog.name} <br></br>Breed: {currentDog.breed}</p>}
-      {currentService && <p className='p-1 col-start-4 col-end-6 self-center'>Type: {currentService.name} <br></br>Cost: {currentService.price}</p>}
+      {currentDog && <img src={currentDog.image_url} className='h-20 rounded-xl p-1 w-[150px] object-cover border-2'></img>}
+      {currentDog && <p className='p-1 col-start-2 col-end-4 self-center'><span className="font-semibold">Name:</span> {currentDog.name} <br></br><span className="font-semibold">Breed:</span> {currentDog.breed}</p>}
+      {currentService && <p className='p-1 col-start-4 col-end-6 self-center'><span className="font-semibold">Type:</span> {currentService.name} <br></br><span className="font-semibold">Price:</span> {currentService.price}</p>}
       {currentStylist && <img src={currentStylist.image_url} 
-      className='col-start-6 h-20 rounded-xl p-1 w-[150px] object-cover'></img>}
-      {currentStylist && <p className='p-1 col-start-7 col-end-9 self-center'>Name: {currentStylist.name} <br></br>Intelligence: {currentStylist.intelligence}</p>}
+      className='col-start-6 h-20 rounded-xl p-1 w-[150px] object-cover border-2'></img>}
+      {currentStylist && <p className='p-1 col-start-7 col-end-9 self-center'><span className="font-semibold">Name:</span> {currentStylist.name} <br></br><span className="font-semibold">Intelligence:</span> {currentStylist.intelligence}</p>}
       
     </div>
 

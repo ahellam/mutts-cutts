@@ -7,6 +7,7 @@ import AppointmentContainer from "./AppointmentContainer"
 import Login from "./Login"
 import Navigation from "./Navigation";
 import Book from "./Book";
+import DogsContainer from "./DogsContainer";
 
 function App() {
 
@@ -55,14 +56,31 @@ function App() {
 
   },[])
 
-  function handleDelete(appointment){
+  function handleDeleteAppointment(appointment){
     fetch(`${appointmentAPI}/${appointment.id}`,{
       method: "DELETE"
-    });
-    setAppointments(appointments.filter((appt) => appt.id !== appointment.id))
+    })
+    .then(setAppointments(appointments.filter((appt) => appt.id !== appointment.id)))
   }
 
+  function handleDeleteDog(dog){
+    // console.log(dog)
+    fetch(`${dogsAPI}/${dog.id}`,{
+      method: "DELETE"
+    })
+    .then(setAppointments(appointments.filter((appt) => appt.dog_id !== dog.id)))
+    .then(setDogs(dogs.filter((d) => d.id !== dog.id)))
+  }
 
+  function handleHowDumb(appointment){
+    console.log(appointment)
+    // fetch(`${appointmentAPI}/${appointment.id}`,{
+    //   method: "PATCH",
+    //   headers: {"Content-Type" : "application/json"},
+    //   body: JSON.stringify{"hey"}
+    // })
+
+  }
 
   // Reroute user to <Login /> Component if not authenticated
   if (!isAuthenticated) return <Login error={'please login'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />;
@@ -74,10 +92,10 @@ function App() {
         <Navigation setIsAuthenticated={setIsAuthenticated} setUser={setUser} user={user}/>
         <Routes>
           <Route path="/" element={<Home />}/>
-          <Route path="/appointments" element={<AppointmentContainer appointments={appointments} handleDelete={handleDelete}/>}/>
+          <Route path="/appointments" element={<AppointmentContainer appointments={appointments} handleDeleteAppointment={handleDeleteAppointment} handleHowDumb={handleHowDumb}/>}/>
           <Route path="/login" element={<Login />} />
           <Route path="/book" element={<Book dogs={dogs} stylists={stylists} services={services} appointments={appointments} setAppointments={setAppointments}/>} />
-
+          <Route path="/dogs" element={<DogsContainer dogs={dogs} setDogs={setDogs} handleDeleteDog={handleDeleteDog}/>} />
         </Routes>
       </Router>
     </div>
