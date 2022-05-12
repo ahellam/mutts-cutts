@@ -25,6 +25,7 @@ function Book({dogs, stylists, services, appointments, setAppointments}) {
   const currentStylist = stylists.find((s) => s.id === parseInt(selectedStylist))
   const currentService = services.find((s) => s.id === parseInt(selectedService))
   //   console.log(currentDog)
+//   console.log(currentService.price)
   
 function handleDogChange(e){
     return setSelectedDog(e.target.value)
@@ -176,7 +177,7 @@ function handleSubmit(e){
       <div className='border-2 grid grid-cols-8 shadow-md'>
       {currentDog && <img src={currentDog.image_url} className='h-20 rounded-xl p-1 w-[150px] object-cover border-2'></img>}
       {currentDog && <p className='p-1 col-start-2 col-end-4 self-center'><span className="font-semibold">Name:</span> {currentDog.name} <br></br><span className="font-semibold">Breed:</span> {currentDog.breed}</p>}
-      {currentService && <p className='p-1 col-start-4 col-end-6 self-center'><span className="font-semibold">Type:</span> {currentService.name} <br></br><span className="font-semibold">Price:</span> {currentService.price}</p>}
+      {currentService && <p className='p-1 col-start-4 col-end-6 self-center'><span className="font-semibold">Type:</span> {currentService.name} <br></br><span className="font-semibold">Price:</span> {dumbness === "Dumber" ? "Duhhh I dunno.." : currentService.price}</p>}
       {currentStylist && <img src={currentStylist.image_url} 
       className='col-start-6 h-20 rounded-xl p-1 w-[150px] object-cover border-2'></img>}
       {currentStylist && <p className='p-1 col-start-7 col-end-9 self-center'><span className="font-semibold">Name:</span> {currentStylist.name} <br></br><span className="font-semibold">Intelligence:</span> {dumbness}</p>}
