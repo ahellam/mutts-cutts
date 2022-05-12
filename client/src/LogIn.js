@@ -65,7 +65,7 @@ function Login({setUser, setIsAuthenticated}) {
         <LogInButton></LogInButton>
       </form>
       {error?<div>{error}</div>:null}
-      {/* <Auth setUser={setUser} setIsAuthenticated={setUser}/> */}
+
     </div>
 
     <div className="p-1 shadow-xl border-2">
@@ -79,7 +79,7 @@ function Login({setUser, setIsAuthenticated}) {
     
   );
 }
-
+/* <Auth setUser={setUser} setIsAuthenticated={setUser}/>  maybe try this later     */  
 function LogInButton(props){
     return (
       <input className="
