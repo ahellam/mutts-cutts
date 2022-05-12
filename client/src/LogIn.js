@@ -62,7 +62,16 @@ function Login({setUser, setIsAuthenticated}) {
           required
         />
         </label>
-        <LogInButton></LogInButton>
+        {/* <LogInButton></LogInButton> */}
+        <input className="
+      bg-slate-600
+      text-white 
+      
+      px-3
+      py-1
+      rounded
+      hover:bg-blue-600
+      " type="submit" value="Login"></input>
       </form>
       {error?<div>{error}</div>:null}
 
@@ -80,18 +89,31 @@ function Login({setUser, setIsAuthenticated}) {
   );
 }
 /* <Auth setUser={setUser} setIsAuthenticated={setUser}/>  maybe try this later     */  
-function LogInButton(props){
-    return (
-      <input className="
-      bg-slate-600
-      text-white 
+// function LogInButton(props){
+//     return (
+//       <input className="
+//       bg-slate-600
+//       text-white 
       
-      px-3
-      py-1
-      rounded
-      hover:bg-blue-600
-      " type="submit" value="Login">{props.children}</input>
-    )
-  }
+//       px-3
+//       py-1
+//       rounded
+//       hover:bg-blue-600
+//       " type="submit" value="Login">{props.children}</input>
+//     )
+//   }
+// function LogInButton(props){
+//     return (
+//       <input className="
+//       bg-slate-600
+//       text-white 
+      
+//       px-3
+//       py-1
+//       rounded
+//       hover:bg-blue-600
+//       " type="submit" value="Login">{props.children}</input>
+//     )
+//   }
 
 export default Login;
