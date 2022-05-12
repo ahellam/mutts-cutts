@@ -72,14 +72,21 @@ function App() {
     .then(setDogs(dogs.filter((d) => d.id !== dog.id)))
   }
 
-  function handleHowDumb(appointment){
-    console.log(appointment)
-    // fetch(`${appointmentAPI}/${appointment.id}`,{
-    //   method: "PATCH",
-    //   headers: {"Content-Type" : "application/json"},
-    //   body: JSON.stringify{"hey"}
-    // })
+  function handleHowDumb(is_dumber, appointment){
+    // console.log(appointment)
+    fetch(`${appointmentAPI}/${appointment.id}`,{
+      method: "PATCH",
+      headers: {"Content-Type" : "application/json"},
+      body: JSON.stringify({"is_dumber": is_dumber})
+    })
+    .then(res => res.json)
+    .then(refreshAppointments)
+  }
 
+  function refreshAppointments() {
+    fetch(appointmentAPI)
+    .then(res => res.json())
+    .then(setAppointments)
   }
 
   // Reroute user to <Login /> Component if not authenticated

@@ -23,10 +23,10 @@ class AppointmentsController < ApplicationController
     private
 
     def appointment_params 
-        params.permit(:dog_id, :stylist_id, :service_id, :dog_image, :dog_name, :dog_breed, :service_name, :service_price, :stylist_image, :stylist_name, :stylist_intelligence)
+        params.permit(:dog_id, :stylist_id, :service_id, :dog_image, :dog_name, :dog_breed, :service_name, :service_price, :stylist_image, :stylist_name, :is_dumber)
     end
 
     def patch_params    
-        params.permit(:stylist_intelligence)
+        params.permit(:is_dumber) #:stylist_intelligence)
     end
 end

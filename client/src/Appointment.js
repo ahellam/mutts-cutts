@@ -16,7 +16,7 @@ function Appointment({appointment, handleDeleteAppointment, handleHowDumb}) {
       <img src={appointment.stylist_name === "Lloyd" ? 
       "https://www.thesun.co.uk/wp-content/uploads/2018/07/NINTCHDBPICT000422933541.jpg" : "https://i.pinimg.com/originals/9b/68/c2/9b68c2b595162ee6239212f4edd2a325.jpg"} 
       className='col-start-6 h-20 rounded-xl p-1 w-[150px] object-cover border-2'></img>
-      <p className='p-1 col-start-7 col-end-9 self-center'><span className="font-semibold">Name:</span>  {appointment.stylist_name} <br></br><span className="font-semibold">Intelligence:</span>  {appointment.stylist_intelligence}</p>
+      <p className='p-1 col-start-7 col-end-9 self-center'><span className="font-semibold">Name:</span>  {appointment.stylist_name} <br></br><span className="font-semibold">Intelligence:</span>  {appointment.is_dumber ? "Dumber" : "Dumb"}</p>
       <div className='p-1 self-center col-start-9 pl-4'><button className="
     bg-slate-600
     text-white 
@@ -25,7 +25,7 @@ function Appointment({appointment, handleDeleteAppointment, handleHowDumb}) {
     py-1
     rounded
     hover:bg-blue-600
-    " onClick={() => handleHowDumb(appointment)}>Edit</button></div>
+    " onClick={() => handleHowDumb(!appointment.is_dumber, appointment)}>Edit</button></div>
 
       <div className='pl-5 self-center col-start-10 '><button className="
     bg-slate-600

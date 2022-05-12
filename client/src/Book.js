@@ -9,16 +9,17 @@ function Book({dogs, stylists, services, appointments, setAppointments}) {
   const [selectedDog, setSelectedDog] = useState();
   const [selectedStylist, setSelectedStylist] = useState();
   const [selectedService, setSelectedService] = useState();
+  const [dumbness, setDumbness] = useState();
 
   
-  const [dogName, setDogName] = useState("");
-  const [dogBreed, setDogBreed] = useState("");
-  const [dogImage, setDogImage] = useState("");
-  const [service, setService] = useState("");
-  const [price, setPrice] = useState();
-  const [stylist, setStylist] = useState("");
-  const [stylistImage, setStylistImage] = useState("")
-  const [intelligence, setIntelligence] = useState("")
+//   const [dogName, setDogName] = useState("");
+//   const [dogBreed, setDogBreed] = useState("");
+//   const [dogImage, setDogImage] = useState("");
+//   const [service, setService] = useState("");
+//   const [price, setPrice] = useState();
+//   const [stylist, setStylist] = useState("");
+//   const [stylistImage, setStylistImage] = useState("")
+//   const [intelligence, setIntelligence] = useState("")
 
   const currentDog = dogs.find((d) => d.id === parseInt(selectedDog))
   const currentStylist = stylists.find((s) => s.id === parseInt(selectedStylist))
@@ -38,6 +39,10 @@ function handleStylistChange(e){
     return setSelectedStylist(e.target.value);
 }
 
+function handleDumbnessChange(e){
+    return setDumbness(e.target.value)
+}
+
                                                 // BOOKING SUBMIT
 function handleSubmit(e){
     e.preventDefault()
@@ -52,7 +57,7 @@ function handleSubmit(e){
         service_price: currentService.price, 
         stylist_image: currentStylist.image_url,
         stylist_name: currentStylist.name,
-        stylist_intelligence: currentStylist.intelligence
+        is_dumber: dumbness
 
     };
     fetch ("http://localhost:3000/appointments", {
@@ -76,7 +81,7 @@ function handleSubmit(e){
         <form className="p-1 text-center" onSubmit={handleSubmit}>
 
                                             {/* SELECT DOG */}
-          <label className="font-bold px-12">
+          <label className="font-bold px-8">
           Select Dog: &nbsp;
             <select
             className="border-2 rounded-md"
@@ -97,7 +102,7 @@ function handleSubmit(e){
 
 
                                             {/* SELECT SERVICE */}
-        <label className="font-bold px-12">
+        <label className="font-bold px-8">
           Select Service: &nbsp;
             <select
             className="border-2 rounded-md"
@@ -115,7 +120,7 @@ function handleSubmit(e){
           </label>
 
                                                       {/* SELECT STYLIST */}
-        <label className="font-bold px-12">
+        <label className="font-bold px-8">
           Select Stylist: &nbsp;
             <select
             className="border-2 rounded-md"
@@ -131,6 +136,21 @@ function handleSubmit(e){
             ))}
             </select>
           </label>
+                                                      {/* SELECT INTELLIGENCE */}
+        <label className="font-bold px-8">
+          Stylist Intelligence: &nbsp;
+          <select
+          className="border-2 rounded-md"
+          type="text"
+          value={dumbness}
+          onChange={handleDumbnessChange}
+          >
+            <option value=" "> </option>
+            <option value="Dumb">Dumb</option>
+            <option value="Dumber">Dumber</option>
+
+          </select>
+        </label>
 
           <br></br><br></br>
 
@@ -159,7 +179,7 @@ function handleSubmit(e){
       {currentService && <p className='p-1 col-start-4 col-end-6 self-center'><span className="font-semibold">Type:</span> {currentService.name} <br></br><span className="font-semibold">Price:</span> {currentService.price}</p>}
       {currentStylist && <img src={currentStylist.image_url} 
       className='col-start-6 h-20 rounded-xl p-1 w-[150px] object-cover border-2'></img>}
-      {currentStylist && <p className='p-1 col-start-7 col-end-9 self-center'><span className="font-semibold">Name:</span> {currentStylist.name} <br></br><span className="font-semibold">Intelligence:</span> {currentStylist.intelligence}</p>}
+      {currentStylist && <p className='p-1 col-start-7 col-end-9 self-center'><span className="font-semibold">Name:</span> {currentStylist.name} <br></br><span className="font-semibold">Intelligence:</span> {dumbness}</p>}
       
     </div>
 

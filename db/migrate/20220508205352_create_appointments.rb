@@ -10,6 +10,7 @@ class CreateAppointments < ActiveRecord::Migration[6.1]
       t.string :stylist_name
       t.string :stylist_image
       t.string :stylist_intelligence
+      t.boolean :is_dumber, default: false
       t.references :service, foreign_key: true
       t.string :service_name
       t.string :service_price

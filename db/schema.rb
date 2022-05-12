@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2022_05_08_205352) do
     t.string "stylist_name"
     t.string "stylist_image"
     t.string "stylist_intelligence"
+    t.boolean "is_dumber", default: false
     t.bigint "service_id"
     t.string "service_name"
     t.string "service_price"
@@ -55,7 +56,6 @@ ActiveRecord::Schema.define(version: 2022_05_08_205352) do
   create_table "stylists", force: :cascade do |t|
     t.string "name"
     t.string "image_url"
-    t.string "intelligence"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
