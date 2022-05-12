@@ -3,5 +3,6 @@ class AppointmentSerializer < ActiveModel::Serializer
 
   def service_price 
     "#{'%.2f' % object.service.price}"
+    object.is_dumber ? (object.service.price / 2) : object.service.price
   end
 end

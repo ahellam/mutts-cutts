@@ -21,11 +21,8 @@ function App() {
   const [stylists, setStylists] =useState([])
   const [services, setServices] =useState([])
 
-
   const [isAuthenticated, setIsAuthenticated] = useState(false); 
   const [user, setUser] = useState(null);
-
-
 
   useEffect(() => {
     fetch(`http://localhost:3000/authorised_user`)
@@ -109,18 +106,5 @@ function App() {
   );
 }
 
-// function TailwindCSSButton(props){
-//   return (
-//     <button className="
-//     bg-blue-500 
-//     text-white 
-//     font-medium
-//     px-4
-//     py-2
-//     rounded
-//     hover:bg-blue-600
-//     ">{props.children}</button>
-//   )
-// }
 
 export default App;
