@@ -8,6 +8,11 @@ function Appointment({appointment, handleDeleteAppointment, handleHowDumb}) {
   //   console.log("DELETE", appointment.id)
   // }
   // console.log(appointment)
+
+  /*
+  To prevent re-order in rails after a patch you can add something like this to the model
+  default_scope { order(id: :asc)}
+  */ 
   return (
     <div className='border-2 grid grid-cols-10 shadow-md'>
       <img src={appointment.dog_image} className='h-20 rounded-xl p-1 w-[150px] object-cover border-2'></img>

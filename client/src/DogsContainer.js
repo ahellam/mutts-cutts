@@ -23,6 +23,11 @@ function DogsContainer({ dogs, setDogs, handleDeleteDog}) {
     })
     .then(res => res.json())
     .then((newDog) => {setDogs([...dogs, newDog])})
+    .then(() => {
+      setDogName("");
+      setDogBreed("");
+      setDogImage("");
+    })
   }
 
   return (
@@ -44,6 +49,7 @@ function DogsContainer({ dogs, setDogs, handleDeleteDog}) {
                 placeholder="Enter Name"
                 value={dogName}
                 onChange={(e) => setDogName(e.target.value)}
+                required
               />
             </label>
 
@@ -55,6 +61,7 @@ function DogsContainer({ dogs, setDogs, handleDeleteDog}) {
                 placeholder="Enter Breed"
                 value={dogBreed}
                 onChange={(e) => setDogBreed(e.target.value)}
+                required
               />
             </label>
             
@@ -66,6 +73,7 @@ function DogsContainer({ dogs, setDogs, handleDeleteDog}) {
                 placeholder="Enter Image URL"
                 value={dogImage}
                 onChange={(e) => setDogImage(e.target.value)}
+                required
               />
             </label>
             <br></br> <br></br>

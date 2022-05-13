@@ -91,7 +91,7 @@ function App() {
 
   return (
     
-    <div className="scale-95 container p-4 grid gap-4">
+    <div className="scale-95 container p-4 grid gap-3">
       <Router>
         <Navigation setIsAuthenticated={setIsAuthenticated} setUser={setUser} user={user}/>
         <Routes>
