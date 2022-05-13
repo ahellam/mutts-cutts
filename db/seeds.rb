@@ -28,5 +28,4 @@ se3 = Service.create!(name: 'The Works', price: 150.00)
 a1 = Appointment.create!(dog_id: d1.id, stylist_id: st1.id, service_id: se1.id, service_name: se1.name, service_price: se1.price, dog_name: d1.name, dog_image: d1.image_url, dog_breed: d1.breed, stylist_image: st1.image_url, stylist_name: st1.name, is_dumber: false)
 a1 = Appointment.create!(dog_id: d2.id, stylist_id: st2.id, service_id: se3.id, service_name: se3.name, service_price: se3.price, dog_name: d2.name, dog_image: d2.image_url, dog_breed: d2.breed, stylist_image: st2.image_url, stylist_name: st2.name, is_dumber: true)
 
-
 puts 'seeding COMPLETE 🌱'
