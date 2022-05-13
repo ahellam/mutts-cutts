@@ -1,9 +1,9 @@
-puts 'Deleting Mutts Data...'
-User.destroy_all
-Dog.destroy_all
-Stylist.destroy_all
-Service.destroy_all
-Appointment.destroy_all
+# puts 'Deleting Mutts Data...'
+# User.destroy_all
+# Dog.destroy_all
+# Stylist.destroy_all
+# Service.destroy_all
+# Appointment.destroy_all
 
 puts '🌱 Seeding Starting....'
 
