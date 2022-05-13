@@ -6,11 +6,27 @@ function Book({dogs, stylists, services, appointments, setAppointments}) {
 
     let navigate = useNavigate();
 
-  const [selectedDog, setSelectedDog] = useState();
-  const [selectedStylist, setSelectedStylist] = useState();
-  const [selectedService, setSelectedService] = useState();
-  const [dumbness, setDumbness] = useState();
+  const [selectedDog, setSelectedDog] = useState("");
+  const [selectedStylist, setSelectedStylist] = useState("");
+  const [selectedService, setSelectedService] = useState("");
+  const [dumbness, setDumbness] = useState("");
 
+  // console.log("selectedDog")
+  // console.log(selectedDog)
+
+  // console.log("selectedStylist")
+  // console.log(selectedStylist)
+
+  // console.log("selectedService")
+  // console.log(selectedService)
+
+  // console.log("dumbness")
+  // console.log(dumbness)
+
+
+  const currentDog = dogs.find((d) => d.id === parseInt(selectedDog))
+  const currentStylist = stylists.find((s) => s.id === parseInt(selectedStylist))
+  const currentService = services.find((s) => s.id === parseInt(selectedService))
   
 //   const [dogName, setDogName] = useState("");
 //   const [dogBreed, setDogBreed] = useState("");
@@ -21,28 +37,27 @@ function Book({dogs, stylists, services, appointments, setAppointments}) {
 //   const [stylistImage, setStylistImage] = useState("")
 //   const [intelligence, setIntelligence] = useState("")
 
-  const currentDog = dogs.find((d) => d.id === parseInt(selectedDog))
-  const currentStylist = stylists.find((s) => s.id === parseInt(selectedStylist))
-  const currentService = services.find((s) => s.id === parseInt(selectedService))
+
   //   console.log(currentDog)
 //   console.log(currentService.price)
   
-function handleDogChange(e){
-    return setSelectedDog(e.target.value)
-}
+// function handleDogChange(e){
+//     return setSelectedDog(e.target.value)
+// }
   // console.log(selectedDog)
   
-function handleServiceChange(e){
-    return setSelectedService(e.target.value);
-}
+// function handleServiceChange(e){
+//     return setSelectedService(e.target.value);
+// }
 
-function handleStylistChange(e){
-    return setSelectedStylist(e.target.value);
-}
+// function handleStylistChange(e){
+//     return setSelectedStylist(e.target.value);
+// }
 
-function handleDumbnessChange(e){
-    return setDumbness(e.target.value)
-}
+// function handleDumbnessChange(e){
+//   console.log(dumbness)
+//     return setDumbness(e.target.value)
+// }
 
                                                 // BOOKING SUBMIT
 function handleSubmit(e){
@@ -58,7 +73,7 @@ function handleSubmit(e){
         service_price: currentService.price, 
         stylist_image: currentStylist.image_url,
         stylist_name: currentStylist.name,
-        is_dumber: dumbness
+        is_dumber: dumbness === "Dumber" ? true : false
 
     };
     fetch ("http://localhost:3000/appointments", {
@@ -69,6 +84,12 @@ function handleSubmit(e){
     .then(res => res.json())
     .then((newAppointment) => {setAppointments([...appointments, newAppointment])})
     .then(navigate("/appointments"))
+    .then(() => {
+      setSelectedDog("");
+      setSelectedStylist("");
+      setSelectedService("");
+      setDumbness("");
+    })
 }
 
 
@@ -88,7 +109,8 @@ function handleSubmit(e){
             className="border-2 rounded-md"
             type="text"
             value={selectedDog}
-            onChange={handleDogChange}
+            // onChange={handleDogChange}
+            onChange={(e) => setSelectedDog(e.target.value)}
             >
             <option value=""> </option>
             {dogs.map((d) => (
@@ -109,7 +131,8 @@ function handleSubmit(e){
             className="border-2 rounded-md"
             type="text"
             value={selectedService}
-            onChange={handleServiceChange}
+            // onChange={handleServiceChange}
+            onChange={(e) => setSelectedService(e.target.value)}
             >
             <option value=""> </option>
             {services.map((ser) => (
@@ -127,7 +150,8 @@ function handleSubmit(e){
             className="border-2 rounded-md"
             type="text"
             value={selectedStylist}
-            onChange={handleStylistChange}
+            // onChange={handleStylistChange}
+            onChange={(e) => setSelectedStylist(e.target.value)}
             >
             <option value=""> </option>
             {stylists.map((sty) => (
@@ -144,9 +168,10 @@ function handleSubmit(e){
           className="border-2 rounded-md"
           type="text"
           value={dumbness}
-          onChange={handleDumbnessChange}
+          // onChange={handleDumbnessChange}
+          onChange={(e) => setDumbness(e.target.value)}
           >
-            <option value=" "> </option>
+            <option value=""> </option>
             <option value="Dumb">Dumb</option>
             <option value="Dumber">Dumber</option>
 

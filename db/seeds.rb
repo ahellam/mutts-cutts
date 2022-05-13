@@ -14,6 +14,9 @@ d1 = Dog.create!(user_id: u1.id, name: 'Dougie', breed: 'Labradoodle', image_url
 d2 = Dog.create!(user_id: u1.id, name: 'Murphy', breed: 'Terrier', image_url: 'https://images.unsplash.com/photo-1551147239-144f237a37b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')
 
 # German Shepard - https://images.unsplash.com/photo-1619980263701-ff2df2e12423?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80
+# Bernese - https://images.unsplash.com/photo-1560603065-d99d67c6efe5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80
+# Pug - https://images.unsplash.com/photo-1543320317-15188058b450?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80
+# French Bulldog - https://images.unsplash.com/photo-1521907236370-15adf2297445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80
 
 # st1 = Stylist.create!(name: 'Lloyd', image_url: 'https://www.thesun.co.uk/wp-content/uploads/2018/07/NINTCHDBPICT000422933541.jpg', intelligence: 'Dumb')
 # st2 = Stylist.create!(name: 'Harry', image_url: 'https://i.pinimg.com/originals/9b/68/c2/9b68c2b595162ee6239212f4edd2a325.jpg', intelligence: 'Dumber')
